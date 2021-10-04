@@ -1,7 +1,8 @@
 import { React, Component } from "react";
 import Select from "react-select";
-import Unknown from "./assets/images/users/unknown.svg";
-import { users } from "./utils/users";
+import Unknown from "./assets/placeholderImage/unknown.svg";
+import { connect } from "react-redux";
+import { setAuthedUser } from "../../actions/authedUser";
 
 const customStyles = {
   control: (base) => ({
@@ -11,18 +12,52 @@ const customStyles = {
   }),
 };
 
+function mapStateToProps({ users }) {
+  return {
+    authedUsers: Object.keys(users).map((user) => {
+      return {
+        value: users[user].name,
+        id: users[user].id,
+        label: (
+          <div className="avatar-container">
+            <img
+              className="avatar"
+              src={require(`${users[user].avatarURL}`).default}
+              alt=""
+            />
+            {users[user].name}
+          </div>
+        ),
+      };
+    }),
+  };
+}
+
 class Login extends Component {
   state = {
+    authedUsers: {},
     authedUser: null,
   };
+  
+  
 
-  handleAuthedUser = (authedUser) => {
+  componentDidMount() {
+    this.setState({ authedUsers: this.props.authedUsers });
+  }
+
+  changeAuthedUser = (authedUser) => {
     this.setState({ authedUser });
-    console.log(authedUser);
   };
 
+  handleSignIn = () => {
+    this.props.dispatch(setAuthedUser(this.state.authedUser.id));
+    this.props.history.push("/home");
+    
+  };
+
+
   render() {
-    const { authedUser } = this.state;
+    const { authedUsers, authedUser } = this.state;
 
     return (
       <div className="login-container">
@@ -35,13 +70,16 @@ class Login extends Component {
             </div>
           }
           value={authedUser}
-          onChange={this.handleAuthedUser}
-          options={users}
+          onChange={this.changeAuthedUser}
+          options={authedUsers}
           styles={customStyles}
         />
+        <button onClick={this.handleSignIn} disabled={!authedUser}>
+          Sign in
+        </button>
       </div>
     );
   }
 }
 
-export default Login;
+export default connect(mapStateToProps)(Login);
