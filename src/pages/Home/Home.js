@@ -9,14 +9,14 @@ class Home extends Component {
     unansweredQuestions: [],
     index: 0,
   };
-  componentDidMount() {
-    console.log("Authed User: ", this.props.authedUser);
-    console.log("new questions: ", this.props.questions);
+  componentWillMount() {
+    console.log("Authed User-------: ", this.props.authedUser);
+    console.log("new questions-------: ", this.props.questions);
 
     this.setState(
       {
-        answeredQuestions: Object.keys(this.props.questions).filter(
-          (question) => {
+        answeredQuestions: Object.keys(this.props.questions)
+          .filter((question) => {
             return (
               this.props.questions[question].optionOne.votes.includes(
                 this.props.authedUser
@@ -25,8 +25,12 @@ class Home extends Component {
                 this.props.authedUser
               )
             );
-          }
-        ),
+          })
+          .sort(
+            (a, b) =>
+              this.props.questions[b].timestamp -
+              this.props.questions[a].timestamp
+          ),
       },
       () => {
         console.log("Answered questions: ", this.state.answeredQuestions);
@@ -35,8 +39,8 @@ class Home extends Component {
 
     this.setState(
       {
-        unansweredQuestions: Object.keys(this.props.questions).filter(
-          (question) => {
+        unansweredQuestions: Object.keys(this.props.questions)
+          .filter((question) => {
             return (
               !this.props.questions[question].optionOne.votes.includes(
                 this.props.authedUser
@@ -45,8 +49,12 @@ class Home extends Component {
                 this.props.authedUser
               )
             );
-          }
-        ),
+          })
+          .sort(
+            (a, b) =>
+              this.props.questions[b].timestamp -
+              this.props.questions[a].timestamp
+          ),
       },
       () => {
         console.log("Unanswered questions: ", this.state.unansweredQuestions);

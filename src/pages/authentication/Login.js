@@ -3,6 +3,7 @@ import Select from "react-select";
 import Unknown from "./assets/placeholderImage/unknown.svg";
 import { connect } from "react-redux";
 import { setAuthedUser } from "../../actions/authedUser";
+import { withRouter } from "react-router";
 
 const customStyles = {
   control: (base) => ({
@@ -51,7 +52,7 @@ class Login extends Component {
 
   handleSignIn = () => {
     this.props.dispatch(setAuthedUser(this.state.authedUser.id));
-    this.props.history.push("/home");
+    this.props.history.push("/");
     
   };
 
@@ -82,4 +83,4 @@ class Login extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));

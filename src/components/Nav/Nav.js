@@ -10,16 +10,16 @@ class Nav extends Component {
   render() {
     return (
       <div>
-        <Link to="/home">
+        <Link to="/">
           <div>Home</div>
         </Link>
-        <Link to="/new-question">
+        <Link to="/add">
           <div>New Question</div>
         </Link>
         <Link to="/leaderboard">
           <div>Leaderboard</div>
         </Link>
-        <Link to="/">
+        <Link to="/login">
           <div>Logout</div>
         </Link>
       </div>
@@ -28,3 +28,4 @@ class Nav extends Component {
 }
 
 export default Nav;
+ 

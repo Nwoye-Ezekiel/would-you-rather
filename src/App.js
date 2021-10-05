@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import { handleInitialData } from "./actions/shared";
 import NewQuestion from "./pages/NewQuestion/NewQuestion";
-import DisplayQuestion from "./components/DisplayQuestion/DisplayQuestion"
+import DisplayPoll from "./components/DisplayPoll/DisplayPoll";
 
 class App extends Component {
   componentDidMount() {
@@ -18,10 +18,11 @@ class App extends Component {
     }
     return (
       <Router>
-        <Route exact component={Login} path="/" />
-        <Route exact component={Home} path="/home" />
-        <Route exact component={NewQuestion} path="/new-question" />
-        <Route exact component={DisplayQuestion} path="/question" />
+        <Route exact component={Login} path="/login" />
+        <Route exact component={Home} path="/" />
+        <Route exact component={NewQuestion} path="/add" />
+        {/* <Route  component={DisplayPoll} path="/questions" /> */}
+        <Route exact component={DisplayPoll} path="/questions/:question_id" />
       </Router>
     );
   }

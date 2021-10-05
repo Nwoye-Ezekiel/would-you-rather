@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Layout from "../../components/Layout/Layout";
 import { handleAddQuestion } from "../../actions/addQuestion";
+import { Redirect } from "react-router-dom";
 
 class NewQuestion extends Component {
   state = {
     optionOneText: null,
     optionTwoText: null,
+    toHome: false,
   };
 
   handleoptionOneText = (event) => {
@@ -18,18 +20,24 @@ class NewQuestion extends Component {
   };
 
   handleSubmit = () => {
-    this.setState({ optionOneText: "", optionTwoText: "" });
-    this.props.dispatch(
-      handleAddQuestion({
-        optionOneText: this.state.optionOneText,
-        optionTwoText: this.state.optionTwoText,
-        author: this.props.authedUser,
-      })
-    );
+
+    this.setState({ toHome: true }, () => {
+      this.props.dispatch(
+        handleAddQuestion({
+          optionOneText: this.state.optionOneText,
+          optionTwoText: this.state.optionTwoText,
+          author: this.props.authedUser,
+        })
+      );
+    });
   };
 
   render() {
-    const { optionOneText, optionTwoText } = this.state;
+    const { optionOneText, optionTwoText, toHome } = this.state;
+
+    if (toHome) {
+      return <Redirect to="/" />;
+    }
     return (
       <Layout>
         <div>
@@ -55,7 +63,6 @@ class NewQuestion extends Component {
           <button
             onClick={this.handleSubmit}
             disabled={!(optionOneText && optionTwoText)}
-            type="submit"
           >
             submit
           </button>
@@ -65,9 +72,10 @@ class NewQuestion extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser, questions }) => {
+const mapStateToProps = ({ authedUser, loading }, { questions }) => {
   return {
     authedUser: authedUser,
+    loading: loading,
   };
 };
 
