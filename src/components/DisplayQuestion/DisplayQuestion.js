@@ -3,12 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class DisplayQuestion extends Component {
-  state = {
-    temp: [],
-  };
-  componentDidMount() {
-    console.log("Questions: ", this.props.questions);
-  }
   render() {
     return (
       <div className="question-container">
@@ -34,7 +28,6 @@ class DisplayQuestion extends Component {
         <h3>Would you rather</h3>
         <p>{this.props.questions[this.props.question].optionOne.text} or ...</p>
         <Link to={`/questions/${this.props.question}`}>
-        {/* <Link to={`/questions`}> */}
           <button>view poll</button>
         </Link>
       </div>

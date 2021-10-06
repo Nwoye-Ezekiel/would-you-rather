@@ -2,13 +2,23 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import Nav from "../Nav/Nav";
 import { Redirect } from "react-router-dom";
-
+import { withRouter } from "react-router";
 class Layout extends Component {
+
   render() {
     const { authedUser } = this.props;
 
-    if (!authedUser) {
-      return <Redirect to="/login" />;
+    if (!authedUser && this.props.history.location.pathname !== "/login") {
+      return (
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: {
+              initialPathname: this.props.history.location.pathname,
+            },
+          }}
+        />
+      );
     }
     return (
       <div>
@@ -25,4 +35,4 @@ const mapStateToProps = ({ authedUser }, { children }) => {
   };
 };
 
-export default connect(mapStateToProps)(Layout);
+export default withRouter(connect(mapStateToProps)(Layout));

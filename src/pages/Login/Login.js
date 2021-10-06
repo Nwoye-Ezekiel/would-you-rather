@@ -2,7 +2,7 @@ import { React, Component } from "react";
 import Select from "react-select";
 import Unknown from "./assets/placeholderImage/unknown.svg";
 import { connect } from "react-redux";
-import { setAuthedUser } from "../../actions/authedUser";
+import { setAuthedUser } from "../../Redux/actions/authedUser";
 import { withRouter } from "react-router";
 
 const customStyles = {
@@ -13,38 +13,18 @@ const customStyles = {
   }),
 };
 
-function mapStateToProps({ users }) {
-  return {
-    authedUsers: Object.keys(users).map((user) => {
-      return {
-        value: users[user].name,
-        id: users[user].id,
-        label: (
-          <div className="avatar-container">
-            <img
-              className="avatar"
-              src={require(`${users[user].avatarURL}`).default}
-              alt=""
-            />
-            {users[user].name}
-          </div>
-        ),
-      };
-    }),
-  };
-}
+
 
 class Login extends Component {
   state = {
-    authedUsers: {},
+    initialPathname: this.props.location.state
+    ? this.props.location.state.initialPathname === "/"
+      ? "/home"
+      : this.props.location.state.initialPathname
+    : "/home",
+    authedUsers: this.props.authedUsers,
     authedUser: null,
   };
-  
-  
-
-  componentDidMount() {
-    this.setState({ authedUsers: this.props.authedUsers });
-  }
 
   changeAuthedUser = (authedUser) => {
     this.setState({ authedUser });
@@ -52,10 +32,8 @@ class Login extends Component {
 
   handleSignIn = () => {
     this.props.dispatch(setAuthedUser(this.state.authedUser.id));
-    this.props.history.push("/");
-    
+    this.props.history.push(`${this.state.initialPathname}`);
   };
-
 
   render() {
     const { authedUsers, authedUser } = this.state;
@@ -81,6 +59,27 @@ class Login extends Component {
       </div>
     );
   }
+}
+
+function mapStateToProps({ users }) {
+  return {
+    authedUsers: Object.keys(users).map((user) => {
+      return {
+        value: users[user].name,
+        id: users[user].id,
+        label: (
+          <div className="avatar-container">
+            <img
+              className="avatar"
+              src={require(`${users[user].avatarURL}`).default}
+              alt=""
+            />
+            {users[user].name}
+          </div>
+        ),
+      };
+    }),
+  };
 }
 
 export default withRouter(connect(mapStateToProps)(Login));

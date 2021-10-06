@@ -1,7 +1,7 @@
-import * as API from "../_DATA";
-import { setLoading } from "./setLoading";
+import * as API from "../../Database/_DATA";
+import { setLoading } from "./loading";
 import { updateQuestion } from "./questions";
-import { updateUser } from "./users";
+import { updateUserAnswers } from "./users";
 
 export const ADD_ANSWER = "ADD_ANSWER";
 export function addAnswer(answer) {
@@ -11,12 +11,13 @@ export function addAnswer(answer) {
   };
 }
 
+// async action
 export function handleAddAnswer(response) {
   return (dispatch) => {
     dispatch(setLoading(true));
     return API._saveQuestionAnswer(response).then(() => {
       dispatch(updateQuestion(response));
-      dispatch(updateUser(response));
+      dispatch(updateUserAnswers(response));
       dispatch(setLoading(false));
     });
   };

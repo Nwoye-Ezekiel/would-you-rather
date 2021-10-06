@@ -1,8 +1,7 @@
-import { ADD_QUESTION } from "../actions/addQuestion";
+import { ADD_QUESTION } from "../actions/questions";
 import { RECEIVE_QUESTIONS, UPDATE_QUESTION } from "../actions/questions";
 
 export function questions(state = {}, action) {
-  console.log("Action before dispatch", action)
   switch (action.type) {
     case RECEIVE_QUESTIONS:
       return {

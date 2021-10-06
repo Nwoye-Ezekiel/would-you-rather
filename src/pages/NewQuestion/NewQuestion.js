@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Layout from "../../components/Layout/Layout";
-import { handleAddQuestion } from "../../actions/addQuestion";
+import { handleAddQuestion } from "../../Redux/actions/questions";
 import { Redirect } from "react-router-dom";
 
-class NewQuestion extends Component {
+class Add extends Component {
   state = {
-    optionOneText: null,
-    optionTwoText: null,
+    optionOneText: "",
+    optionTwoText: "",
     toHome: false,
   };
 
@@ -20,7 +19,6 @@ class NewQuestion extends Component {
   };
 
   handleSubmit = () => {
-
     this.setState({ toHome: true }, () => {
       this.props.dispatch(
         handleAddQuestion({
@@ -36,10 +34,9 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText, toHome } = this.state;
 
     if (toHome) {
-      return <Redirect to="/" />;
+      return <Redirect to="/home" />;
     }
     return (
-      <Layout>
         <div>
           <h3>Create a Question</h3>
           <h2>Would you rather</h2>
@@ -67,7 +64,6 @@ class NewQuestion extends Component {
             submit
           </button>
         </div>
-      </Layout>
     );
   }
 }
@@ -79,4 +75,4 @@ const mapStateToProps = ({ authedUser, loading }, { questions }) => {
   };
 };
 
-export default connect(mapStateToProps)(NewQuestion);
+export default connect(mapStateToProps)(Add);

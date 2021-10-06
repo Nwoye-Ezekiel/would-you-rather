@@ -1,16 +1,16 @@
 import { Component } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { setAuthedUser } from "../../Redux/actions/authedUser";
 class Nav extends Component {
-  state = {
-    temp: [],
+  handleLogout = () => {
+    this.props.dispatch(setAuthedUser(null));
   };
-
   render() {
+    const { authedUser, users } = this.props;
     return (
       <div>
-        <Link to="/">
+        <Link to="/home">
           <div>Home</div>
         </Link>
         <Link to="/add">
@@ -19,13 +19,32 @@ class Nav extends Component {
         <Link to="/leaderboard">
           <div>Leaderboard</div>
         </Link>
-        <Link to="/login">
-          <div>Logout</div>
-        </Link>
+
+        {authedUser && (
+          <div>
+            <div>
+              {users[authedUser].name}
+              <img
+                className="avatar"
+                src={require(`${users[authedUser].avatarURL}`).default}
+                alt=""
+              />
+            </div>
+            <Link to="/login">
+              <div onClick={this.handleLogout}>Logout</div>
+            </Link>
+          </div>
+        )}
       </div>
     );
   }
 }
 
-export default Nav;
- 
+const mapStateToProps = ({ authedUser, users }) => {
+  return {
+    authedUser: authedUser,
+    users: users,
+  };
+};
+
+export default connect(mapStateToProps)(Nav);

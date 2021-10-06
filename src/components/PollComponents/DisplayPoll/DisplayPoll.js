@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import AnswerQuestion from "../AnswerQuestion/AnswerQuestion";
+import AnswerQuestion from "../../AnswerQuestion/AnswerQuestion";
+import PollResults from "../PollResults/PollResults";
+import Page404 from "../../Page404/Page404";
 
 class DisplayPoll extends Component {
   state = {
     answered: false,
     id: null,
+    is404page: false,
   };
-  componentWillMount() {
+
+  UNSAFE_componentWillMount() {
     const id = this.props.match.params.question_id;
 
-    this.setState(
-      {
+    if (this.props.questions[id] === undefined) {
+      this.setState({ is404page: true });
+    } else {
+      this.setState({
         answered:
           this.props.questions[id].optionOne.votes.includes(
             this.props.authedUser
@@ -20,21 +26,17 @@ class DisplayPoll extends Component {
             this.props.authedUser
           ),
         id: id,
-      },
-      () => {
-        console.log(
-          "Answered? : ",
-          this.state.answered,
-          "id : ",
-          this.state.id
-        );
-      }
-    );
+      });
+    }
   }
 
   render() {
-    const { answered, id } = this.state;
-    return !answered && <AnswerQuestion id={id} />;
+    const { answered, id, is404page } = this.state;
+
+    if (is404page) {
+      return <Page404 />;
+    }
+    return !answered ? <AnswerQuestion id={id} /> : <PollResults id={id} />;
   }
 }
 

@@ -1,25 +1,20 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { handleAddAnswer } from "../../actions/addAnswer";
+import { handleAddAnswer } from "../../Redux/actions/answers";
 
 class AnswerQuestion extends Component {
   state = {
-    optionOneText: null,
-    optionTwoText: null,
+    optionOneText: this.props.question.optionOne.text,
+      optionTwoText: this.props.question.optionTwo.text,
     answer: null,
   };
-  componentWillMount() {
-    this.setState({
-      optionOneText: this.props.question.optionOne.text,
-      optionTwoText: this.props.question.optionTwo.text,
-    });
-  }
+  
+
   handleOption = (event) => {
     this.setState({ answer: event.target.value });
   };
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log("answer: ", this.state.answer);
     this.props.dispatch(
       handleAddAnswer({
         authedUser: this.props.authedUser,
@@ -40,7 +35,7 @@ class AnswerQuestion extends Component {
             name="questionOption"
             value="optionOne"
           />
-          <label for="optionOne">{optionOneText}</label>
+          <label htmlFor="optionOne">{optionOneText}</label>
           <br />
           <input
             type="radio"
@@ -48,7 +43,7 @@ class AnswerQuestion extends Component {
             name="questionOption"
             value="optionTwo"
           />
-          <label for="optionTwo">{optionTwoText}</label>
+          <label htmlFor="optionTwo">{optionTwoText}</label>
           <br />
           <button type="submit" disabled={!answer}>
             submit
