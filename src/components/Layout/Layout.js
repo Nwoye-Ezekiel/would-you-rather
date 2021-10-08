@@ -4,10 +4,10 @@ import Nav from "../Nav/Nav";
 import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 class Layout extends Component {
-
   render() {
     const { authedUser } = this.props;
 
+    // user is not authenticated and location pathname is not login to enable redirecting to the login page
     if (!authedUser && this.props.history.location.pathname !== "/login") {
       return (
         <Redirect
@@ -20,6 +20,8 @@ class Layout extends Component {
         />
       );
     }
+
+    // user is authenticated
     return (
       <div>
         <Nav />
@@ -29,9 +31,11 @@ class Layout extends Component {
   }
 }
 
+// retrieve authedUser data from the redux state and children from the component props
 const mapStateToProps = ({ authedUser }, { children }) => {
   return {
-    authedUser: authedUser,
+    authedUser,
+    children,
   };
 };
 

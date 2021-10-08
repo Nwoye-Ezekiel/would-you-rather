@@ -5,14 +5,16 @@ import { handleAddAnswer } from "../../Redux/actions/answers";
 class AnswerQuestion extends Component {
   state = {
     optionOneText: this.props.question.optionOne.text,
-      optionTwoText: this.props.question.optionTwo.text,
+    optionTwoText: this.props.question.optionTwo.text,
     answer: null,
   };
-  
 
+  // handle selected answer option
   handleOption = (event) => {
     this.setState({ answer: event.target.value });
   };
+
+  // handle poll answer submission
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.dispatch(
@@ -54,11 +56,12 @@ class AnswerQuestion extends Component {
   }
 }
 
+// retrieve questions and authedUser data from the redux state and id from the component props
 const mapStateToProps = ({ questions, authedUser }, { id }) => {
   return {
-    id: id,
-    questions: questions,
-    authedUser: authedUser,
+    id,
+    questions,
+    authedUser,
     question: questions[id],
   };
 };

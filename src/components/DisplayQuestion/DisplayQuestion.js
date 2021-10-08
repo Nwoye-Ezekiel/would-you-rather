@@ -35,10 +35,12 @@ class DisplayQuestion extends Component {
   }
 }
 
-const mapStateToProps = ({ questions, users }, question) => {
+// retrieve questions and users data from the redux state and question from the component props
+const mapStateToProps = ({ questions, users }, { question }) => {
   return {
-    questions: questions,
-    users: users,
+    questions,
+    users,
+    question,
   };
 };
 

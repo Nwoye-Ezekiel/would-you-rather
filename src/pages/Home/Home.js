@@ -8,6 +8,8 @@ class Home extends Component {
     unansweredQuestions: [],
     index: 0,
   };
+
+  // the questions from the redux state is sorted and filtered by answered and unanswered based on the authedUser
   componentDidMount() {
     this.setState({
       answeredQuestions: Object.keys(this.props.questions)
@@ -48,12 +50,16 @@ class Home extends Component {
     });
   }
 
+  // setting the component state to view the unanswered questions
   handleUnansweredQuestions = () => {
     this.setState({ index: 0 });
   };
+
+  // setting the component state to view the answered questions
   handleAnsweredQuestions = () => {
     this.setState({ index: 1 });
   };
+
   render() {
     return (
       <div>
@@ -62,27 +68,18 @@ class Home extends Component {
         <h4 onClick={this.handleAnsweredQuestions}>Answered Questions</h4>
         {this.state.index === 0 &&
           this.state.unansweredQuestions.map((question) => {
-            return (
-              <DisplayQuestion
-                key={question}
-                question={question}
-              />
-            );
+            return <DisplayQuestion key={question} question={question} />;
           })}
         {this.state.index === 1 &&
           this.state.answeredQuestions.map((question) => {
-            return (
-              <DisplayQuestion
-                key={question}
-                question={question}
-              />
-            );
+            return <DisplayQuestion key={question} question={question} />;
           })}
       </div>
     );
   }
 }
 
+// retrieve questions and authedUser data from the redux state
 const mapStateToProps = ({ questions, authedUser }) => {
   return {
     questions: questions,

@@ -10,14 +10,17 @@ class Add extends Component {
     toHome: false,
   };
 
+  // sets the component state value for option one
   handleoptionOneText = (event) => {
     this.setState({ optionOneText: event.target.value });
   };
 
+  // sets the component state value for option two
   handleoptionTwoText = (event) => {
     this.setState({ optionTwoText: event.target.value });
   };
 
+  // calls dispatch to save the question and redirects to the home page
   handleSubmit = () => {
     this.setState({ toHome: true }, () => {
       this.props.dispatch(
@@ -33,45 +36,47 @@ class Add extends Component {
   render() {
     const { optionOneText, optionTwoText, toHome } = this.state;
 
+    // redirects to the home page when toHome is true after question submission
     if (toHome) {
       return <Redirect to="/home" />;
     }
     return (
-        <div>
-          <h3>Create a Question</h3>
-          <h2>Would you rather</h2>
+      <div>
+        <h3>Create a Question</h3>
+        <h2>Would you rather</h2>
 
-          <input
-            value={optionOneText}
-            placeholder="Enter option one here"
-            onChange={this.handleoptionOneText}
-          ></input>
+        <input
+          value={optionOneText}
+          placeholder="Enter option one here"
+          onChange={this.handleoptionOneText}
+        ></input>
 
-          <br />
-          <p>Or</p>
-          <br />
+        <br />
+        <p>Or</p>
+        <br />
 
-          <input
-            value={optionTwoText}
-            placeholder="Enter option two here"
-            onChange={this.handleoptionTwoText}
-          ></input>
+        <input
+          value={optionTwoText}
+          placeholder="Enter option two here"
+          onChange={this.handleoptionTwoText}
+        ></input>
 
-          <button
-            onClick={this.handleSubmit}
-            disabled={!(optionOneText && optionTwoText)}
-          >
-            submit
-          </button>
-        </div>
+        <button
+          onClick={this.handleSubmit}
+          disabled={!(optionOneText && optionTwoText)}
+        >
+          submit
+        </button>
+      </div>
     );
   }
 }
 
-const mapStateToProps = ({ authedUser, loading }, { questions }) => {
+// retrieve authedUser from the redux state and questions from the component props
+const mapStateToProps = ({ authedUser }, { questions }) => {
   return {
-    authedUser: authedUser,
-    loading: loading,
+    authedUser,
+    questions,
   };
 };
 

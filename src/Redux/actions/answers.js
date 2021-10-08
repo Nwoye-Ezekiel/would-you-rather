@@ -11,7 +11,7 @@ export function addAnswer(answer) {
   };
 }
 
-// async action
+// async action creator
 export function handleAddAnswer(response) {
   return (dispatch) => {
     dispatch(setLoading(true));

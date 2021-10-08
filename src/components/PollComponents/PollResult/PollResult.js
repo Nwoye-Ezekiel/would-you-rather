@@ -17,7 +17,9 @@ class PollResult extends Component {
       <div className="poll-result-container">
         {questionText}
         <div className="votes-bar-container">
-        <div className="votes-bar" style={{width: `${barPercentage}%`}}><p className="votes-percentage">{barPercentage}%</p></div>
+          <div className="votes-bar" style={{ width: `${barPercentage}%` }}>
+            <p className="votes-percentage">{barPercentage}%</p>
+          </div>
         </div>
         {this.state.authedUserVoted && "Voted"}
         <div>
@@ -28,6 +30,7 @@ class PollResult extends Component {
   }
 }
 
+// retrieve users and authedUser data from the redux state and question and option data from the component props
 const mapStateToProps = ({ users, authedUser }, { question, option }) => {
   return {
     users,

@@ -11,6 +11,9 @@ class DisplayPoll extends Component {
     is404page: false,
   };
 
+  // retrieve question id from the address bar and verify it's valid.
+  // sets the state is404page to true if the question id is not valid, which renders the 404 page.
+  // checks if the authedUser has answered that particular question so as to render the correct component.
   UNSAFE_componentWillMount() {
     const id = this.props.match.params.question_id;
 
@@ -33,17 +36,21 @@ class DisplayPoll extends Component {
   render() {
     const { answered, id, is404page } = this.state;
 
+    // displays 404 page due to invalid question id
     if (is404page) {
       return <Page404 />;
     }
+
+    // passes the retrieved question id to the correct component if the user has answered the question or not.
     return !answered ? <AnswerQuestion id={id} /> : <PollResults id={id} />;
   }
 }
 
+// retrieves the authedUser and questions data from the redux state.
 const mapStateToProps = ({ authedUser, questions }) => {
   return {
-    authedUser: authedUser,
-    questions: questions,
+    authedUser,
+    questions,
   };
 };
 

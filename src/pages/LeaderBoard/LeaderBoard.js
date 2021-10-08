@@ -3,10 +3,12 @@ import { connect } from "react-redux";
 import Podium from "../../components/Podium/Podium";
 
 class LeaderBoard extends Component {
+  // sort the users after the component has mounted
   componentDidMount() {
     this.sortUsers(this.props.users);
   }
 
+  // sort the users based on thier score which is the addition of their answered questions and questions created
   sortUsers(users) {
     users = Object.keys(users).map((user) => {
       return {
@@ -44,6 +46,7 @@ class LeaderBoard extends Component {
   }
 }
 
+// retrieve users data from the redux state
 const mapStateToProps = ({ users }) => {
   return {
     users: users,

@@ -13,12 +13,15 @@ import Page404 from "./components/Page404/Page404";
 import { Switch } from "react-router";
 
 class App extends Component {
+  // dispatches the async action creator involing an API call after the App component has mounted
   componentDidMount() {
     this.props.dispatch(handleInitialData());
   }
+
   render() {
     const { loading } = this.props;
 
+    // displays the loading screen while there's an asynchronous API request
     if (loading) {
       return <div>Loading...</div>;
     }
@@ -37,7 +40,6 @@ class App extends Component {
             />
             <Route exact component={LeaderBoard} path="/leaderboard" />
             <Route Route component={Page404} />
-            {/* <Route path="*" component={Page404} /> */}
           </Switch>
         </Layout>
       </Router>
@@ -45,10 +47,10 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ loading, authedUser }) => {
+// retrieves the loading data from the redux state
+const mapStateToProps = ({ loading }) => {
   return {
     loading,
-    authedUser,
   };
 };
 
