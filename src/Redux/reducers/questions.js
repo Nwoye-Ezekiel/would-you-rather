@@ -20,9 +20,9 @@ export function questions(state = {}, action) {
           ...state[action.response.qid],
           [action.response.answer]: {
             ...state[action.response.qid][action.response.answer],
-            votes: state[action.response.qid][action.response.answer].votes.concat([
-              action.response.authedUser,
-            ]),
+            votes: state[action.response.qid][
+              action.response.answer
+            ].votes.concat([action.response.authedUser]),
           },
         },
       };

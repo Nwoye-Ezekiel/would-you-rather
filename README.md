@@ -38,28 +38,21 @@ code .
 ```
 
 You can as well view the project which is hosted on [Netlify] by clicking on the link below
-[My Reads App]
+[Would You Rather]
 
 # Project overwiew
 
-The name of this project is **My Reads App** and this app basically shows a functional bookshelf. The first page that opens when launched is the main page, which consists of three shelves which are `Currently reading`, `Read` and `Want to read`.
-
-Books can be moved from one shelf to the other and can also be removed completely or newly added to a shelf with the aid of a dropdown button attached to each book at the bottom right.
-
-You can search for new books by navigating to the search page by clicking on the button that's fixed to the screen at the bottom right with a plus sign on it.
-
-You can search for books but this is limited to specific books and you can see some valid search terms on the search page background text. There are certain features added to make the design more unique such as lightmode/darkmode, books count etc.
-
-**I'll give you the privilege to explore the rest.**
-(hint: hover on a book thumbnail to see for yourself)
+This project aims to replicate the would you rather game in a more digitalized form. It is a game where a question is asked and you are to choose which option suits you best. It makes use of a fake database, and as such, created questions after app refresh don't persist, except the already hard coded questions. This app gives a very unique and interactive user interface and it's suitable for just anyone. You start by first authenticating as any of the users that has been provided and after which you can start answering poll questions and creating yours as well. There is a leaderboard page that shows you the current ranking but changes as other users passes the criteria to top the ranks. The rank score is the sum of answered questions and questions created by a particular user. Logging out and switching to different users provides a different data which is based on that chosen user. It is a fun game and I'm sure you'll enjoy it. That being said, Would you rather try this game or would you pass it? Goodluck!
 
 #### References
 
 - Illustration images gotten from Freepik [Freepik].
 - Icons gotten from Fontawesome [Fontawesome].
+- User avatar svg from SVGREPO [SVGREPO]
 
 [create react app]: https://create-react-app.dev
 [netlify]: https://www.netlify.com/
-[my reads app]: https://www.the-reads-app.netlify.app/
-[Freepik]: https://www.freepik.com/
-[Fontawesome]: https://fontawesome.com/
+[would you rather]: https://the-would-you-rather-game.netlify.app/
+[freepik]: https://www.freepik.com/
+[fontawesome]: https://fontawesome.com/
+[svgrepo]: https://www.svgrepo.com/

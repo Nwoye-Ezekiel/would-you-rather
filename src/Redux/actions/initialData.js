@@ -1,4 +1,4 @@
-import * as API from "../../Database/_DATA"
+import * as API from "../../Database/_DATA";
 import { receiveQuestions } from "./questions";
 import { receiveUsers } from "./users";
 import { setLoading } from "./loading";
@@ -15,5 +15,3 @@ export function handleInitialData() {
     );
   };
 }
-
-

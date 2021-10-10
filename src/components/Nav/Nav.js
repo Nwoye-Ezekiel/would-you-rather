@@ -2,10 +2,16 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setAuthedUser } from "../../Redux/actions/authedUser";
-import { FaHome, FaPlus, FaBoxes, FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaHome,
+  FaPlus,
+  FaBoxes,
+  FaSignOutAlt,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
 
 export const AuthedUser = ({ users, authedUser }) => {
-
   return (
     <div className="authed-user-details">
       <span className="authed-username">
@@ -28,7 +34,13 @@ export const DesktopNav = ({ users, authedUser }) => {
   );
 };
 
-export const NavList = ({ users, authedUser, handleLogout, flexDirection, closeDropdown }) => {
+export const NavList = ({
+  users,
+  authedUser,
+  handleLogout,
+  flexDirection,
+  closeDropdown,
+}) => {
   return (
     <div className={`${"links"} ${flexDirection ? flexDirection : ""}`}>
       <Link onClick={closeDropdown} to="/home">
