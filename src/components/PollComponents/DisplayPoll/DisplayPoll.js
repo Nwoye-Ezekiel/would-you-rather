@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import AnswerQuestion from "../../AnswerQuestion/AnswerQuestion";
-import PollResults from "../PollResults/PollResults";
+// import AnswerQuestion from "../../AnswerQuestion/AnswerQuestion";
 import Page404 from "../../Page404/Page404";
+import DisplayQuestion from "../../DisplayQuestion/DisplayQuestion";
 
 class DisplayPoll extends Component {
   state = {
@@ -31,10 +31,12 @@ class DisplayPoll extends Component {
         id: id,
       });
     }
+
+
   }
 
   render() {
-    const { answered, id, is404page } = this.state;
+    const { answered, id, is404page} = this.state;
 
     // displays 404 page due to invalid question id
     if (is404page) {
@@ -42,7 +44,8 @@ class DisplayPoll extends Component {
     }
 
     // passes the retrieved question id to the correct component if the user has answered the question or not.
-    return !answered ? <AnswerQuestion id={id} /> : <PollResults id={id} />;
+    return !answered ? <DisplayQuestion id={id} answerQuestion={true}/> : <DisplayQuestion id={id} pollResults={true}/>;
+    // return !answered ? <AnswerQuestion id={id} /> : <PollResults id={id} />;
   }
 }
 

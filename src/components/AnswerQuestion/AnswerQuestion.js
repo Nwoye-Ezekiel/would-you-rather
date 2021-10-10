@@ -31,23 +31,39 @@ class AnswerQuestion extends Component {
     return (
       <div>
         <form onChange={this.handleOption} onSubmit={this.handleSubmit}>
-          <input
-            type="radio"
-            id="optionOne"
-            name="questionOption"
-            value="optionOne"
-          />
-          <label htmlFor="optionOne">{optionOneText}</label>
+          <div className="question-option-container">
+            <div className="radio-button-container">
+              <input
+                type="radio"
+                id="optionOne"
+                name="questionOption"
+                value="optionOne"
+              />
+            </div>
+            <label className="question-option-text" htmlFor="optionOne">
+              {optionOneText}
+            </label>
+          </div>
           <br />
-          <input
-            type="radio"
-            id="optionTwo"
-            name="questionOption"
-            value="optionTwo"
-          />
-          <label htmlFor="optionTwo">{optionTwoText}</label>
+          <div className="question-option-container">
+            <div className="radio-button-container">
+              <input
+                type="radio"
+                id="optionTwo"
+                name="questionOption"
+                value="optionTwo"
+              />
+            </div>
+            <label className="question-option-text" htmlFor="optionTwo">
+              {optionTwoText}
+            </label>
+          </div>
           <br />
-          <button type="submit" disabled={!answer}>
+          <button
+            className="submit-answer-button"
+            type="submit"
+            disabled={!answer}
+          >
             submit
           </button>
         </form>

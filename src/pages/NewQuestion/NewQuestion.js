@@ -41,32 +41,40 @@ class Add extends Component {
       return <Redirect to="/home" />;
     }
     return (
-      <div>
-        <h3>Create a Question</h3>
-        <h2>Would you rather</h2>
+      <div className="new-question-wrapper">
+        <div className="new-question-container">
+          <h2 className="new-question-title">Create a Question</h2>
+          <hr />
+          <div>
+            <h2 className="new-question-header">Would you rather...</h2>
 
-        <input
-          value={optionOneText}
-          placeholder="Enter option one here"
-          onChange={this.handleoptionOneText}
-        ></input>
+            <input
+              value={optionOneText}
+              placeholder="Enter option one here"
+              onChange={this.handleoptionOneText}
+              class="new-question-input"
+              maxLength="50"
+            ></input>
 
-        <br />
-        <p>Or</p>
-        <br />
+            <p class="or">Or</p>
 
-        <input
-          value={optionTwoText}
-          placeholder="Enter option two here"
-          onChange={this.handleoptionTwoText}
-        ></input>
+            <input
+              value={optionTwoText}
+              placeholder="Enter option two here"
+              onChange={this.handleoptionTwoText}
+              class="new-question-input"
+              maxLength="50"
+            ></input>
 
-        <button
-          onClick={this.handleSubmit}
-          disabled={!(optionOneText && optionTwoText)}
-        >
-          submit
-        </button>
+            <button
+              className="new-question-button"
+              onClick={this.handleSubmit}
+              disabled={!(optionOneText && optionTwoText)}
+            >
+              submit
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

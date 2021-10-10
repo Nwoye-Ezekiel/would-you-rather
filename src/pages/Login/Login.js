@@ -11,7 +11,7 @@ const customStyles = {
     ...base,
     height: 50,
     cursor: "pointer",
-    background: "#DEEDFE",
+    background: "white",
     border: "none",
     outline: "none",
     "border-radius": "5px",

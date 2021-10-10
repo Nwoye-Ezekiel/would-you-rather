@@ -25,12 +25,13 @@ class LeaderBoard extends Component {
     const { users } = this.props;
 
     return (
-      <div>
-        <div>LeaderBoard</div>
-        <div>
+      <div class="home">
+        <div class="questions-wrapper">
+          <h3 class="questions-title">Leaderboard</h3>
           {this.sortUsers(users).map((user, index) => {
             return (
               <Podium
+                id={user.id}
                 key={user.id}
                 position={index + 1}
                 name={user.name}

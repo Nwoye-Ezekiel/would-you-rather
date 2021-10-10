@@ -11,6 +11,7 @@ import LeaderBoard from "./pages/LeaderBoard/LeaderBoard";
 import Layout from "./components/Layout/Layout";
 import Page404 from "./components/Page404/Page404";
 import { Switch } from "react-router";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 class App extends Component {
   // dispatches the async action creator involing an API call after the App component has mounted
@@ -23,11 +24,19 @@ class App extends Component {
 
     // displays the loading screen while there's an asynchronous API request
     if (loading) {
-      return <div>Loading...</div>;
+      return (
+        <div className="loading-animation-wrapper">
+          <div className="loading-animation-container">
+            <div className="loading-animation" />
+            <pre> Loading...</pre>
+          </div>
+        </div>
+      );
     }
 
     return (
       <Router>
+        <ScrollToTop />
         <Layout>
           <Switch>
             <Route exact component={Login} path="/login" />

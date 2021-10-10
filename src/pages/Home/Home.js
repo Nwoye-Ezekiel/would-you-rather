@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import DisplayQuestion from "../../components/DisplayQuestion/DisplayQuestion";
+import NoData from "./assets/no-data-image/no-data.png";
 
 class Home extends Component {
   state = {
@@ -50,6 +51,11 @@ class Home extends Component {
     });
   }
 
+  tabStyle = {
+    color: "#F4FCFD",
+    background: "#01C6D7",
+  };
+
   // setting the component state to view the unanswered questions
   handleUnansweredQuestions = () => {
     this.setState({ index: 0 });
@@ -62,18 +68,45 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Questions</h3>
-        <h4 onClick={this.handleUnansweredQuestions}>Unanswered Questions</h4>
-        <h4 onClick={this.handleAnsweredQuestions}>Answered Questions</h4>
-        {this.state.index === 0 &&
-          this.state.unansweredQuestions.map((question) => {
-            return <DisplayQuestion key={question} question={question} />;
-          })}
-        {this.state.index === 1 &&
-          this.state.answeredQuestions.map((question) => {
-            return <DisplayQuestion key={question} question={question} />;
-          })}
+      <div class="home">
+        <div class="questions-wrapper">
+          <h3 class="questions-title">All Questions</h3>
+          <div class="questions-header">
+            <h4
+              style={this.state.index === 0 ? this.tabStyle : {}}
+              onClick={this.handleUnansweredQuestions}
+            >
+              Unanswered
+            </h4>
+            <h4
+              style={this.state.index === 1 ? this.tabStyle : {}}
+              onClick={this.handleAnsweredQuestions}
+            >
+              Answered{" "}
+            </h4>
+          </div>
+
+          <div class="questions-container">
+            {console.log("length: ", this.state.unansweredQuestions.length)}
+            {this.state.index === 0 &&
+              (this.state.unansweredQuestions.length === 0 ? (
+                <img className="no-data-image" src={NoData} alt="" />
+              ) : (
+                this.state.unansweredQuestions.map((id) => {
+                  return <DisplayQuestion key={id} id={id} />;
+                })
+              ))}
+
+            {this.state.index === 1 &&
+              (this.state.answeredQuestions.length === 0 ? (
+                <img className="no-data-image" src={NoData} alt="" />
+              ) : (
+                this.state.answeredQuestions.map((id) => {
+                  return <DisplayQuestion key={id} id={id} />;
+                })
+              ))}
+          </div>
+        </div>
       </div>
     );
   }
