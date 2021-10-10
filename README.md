@@ -37,7 +37,7 @@ You can quickly do so by running this command on your terminal to open your code
 code .
 ```
 
-You can as well view the project which is hosted on [Netlify] by clicking on the link
+You can as well view the project which is hosted on [Netlify] by clicking on this link
 [Would You Rather]
 
 # Project overwiew
