@@ -48,7 +48,7 @@ This project aims to replicate the would you rather game in a more digitalized f
 
 - Illustration images gotten from [Freepik].
 - Icons gotten from [Fontawesome].
-- User avatar svg from [SVGREPO]
+- User avatars svg gotten from [SVGREPO]
 
 [create react app]: https://create-react-app.dev
 [netlify]: https://www.netlify.com/
