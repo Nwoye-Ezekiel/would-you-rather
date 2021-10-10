@@ -68,10 +68,10 @@ class Home extends Component {
 
   render() {
     return (
-      <div class="module">
-        <div class="module-wrapper">
-          <h3 class="module-title">All Questions</h3>
-          <div class="questions-header">
+      <div className="module">
+        <div className="module-wrapper">
+          <h3 className="module-title">All Questions</h3>
+          <div className="questions-header">
             <h4
               style={this.state.index === 0 ? this.tabStyle : {}}
               onClick={this.handleUnansweredQuestions}
@@ -89,7 +89,7 @@ class Home extends Component {
           <div>
             {this.state.index === 0 &&
               (this.state.unansweredQuestions.length === 0 ? (
-                <img className="no-data-image" src={NoData} alt="" />
+                <img className="no-data-image" src={NoData} alt="avatar" />
               ) : (
                 this.state.unansweredQuestions.map((id) => {
                   return <DisplayQuestion key={id} id={id} />;
@@ -98,7 +98,7 @@ class Home extends Component {
 
             {this.state.index === 1 &&
               (this.state.answeredQuestions.length === 0 ? (
-                <img className="no-data-image" src={NoData} alt="" />
+                <img className="no-data-image" src={NoData} alt="avatar" />
               ) : (
                 this.state.answeredQuestions.map((id) => {
                   return <DisplayQuestion key={id} id={id} />;

@@ -14,7 +14,7 @@ const customStyles = {
     background: "white",
     border: "none",
     outline: "none",
-    "border-radius": "5px",
+    borderRadius: "5px",
   }),
 };
 
@@ -53,7 +53,7 @@ class Login extends Component {
           <Select
             placeholder={
               <div className="avatar-container">
-                <img className="avatar" src={Unknown} alt="" />
+                <img className="avatar" src={Unknown} alt="avatar" />
                 Select a user{" "}
               </div>
             }
@@ -90,7 +90,7 @@ function mapStateToProps({ users }) {
             <img
               className="avatar"
               src={require(`${users[user].avatarURL}`).default}
-              alt=""
+              alt="avatar"
             />
             {users[user].name}
           </div>

@@ -5,7 +5,6 @@ import { setAuthedUser } from "../../Redux/actions/authedUser";
 import { FaHome, FaPlus, FaBoxes, FaSignOutAlt, FaBars, FaTimes } from "react-icons/fa";
 
 export const AuthedUser = ({ users, authedUser }) => {
-  console.log("Users", users, "authedUser", authedUser);
 
   return (
     <div className="authed-user-details">
@@ -13,7 +12,7 @@ export const AuthedUser = ({ users, authedUser }) => {
         <img
           className="authed-avatar"
           src={require(`${users[authedUser].avatarURL}`).default}
-          alt=""
+          alt="avatar"
         />
         {users[authedUser].name}
       </span>
@@ -22,7 +21,6 @@ export const AuthedUser = ({ users, authedUser }) => {
 };
 
 export const DesktopNav = ({ users, authedUser }) => {
-  console.log("Users", users, "authedUser", authedUser);
   return (
     <div className="links">
       <NavList />

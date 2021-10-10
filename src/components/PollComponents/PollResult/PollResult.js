@@ -1,6 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+export const VotedUser = ({ users, user, authedUser }) => {
+  return (
+    <span
+      className={`${"voted-user-avatar"}  ${
+        user === authedUser ? "voted-authed-user-avatar" : ""
+      }`}
+    >
+      <img
+        className="avatar"
+        src={require(`${users[user].avatarURL}`).default}
+        alt="avatar"
+      />
+    </span>
+  );
+};
+
 class PollResult extends Component {
   state = {
     barPercentage: (
@@ -51,17 +67,12 @@ class PollResult extends Component {
           </p>
           {votedUsers.map((user) => {
             return (
-              <span
-                className={`${"voted-user-avatar"}  ${
-                  user === authedUser ? "voted-authed-user-avatar" : ""
-                }`}
-              >
-                <img
-                  className="avatar"
-                  src={require(`${users[user].avatarURL}`).default}
-                  alt=""
-                />
-              </span>
+              <VotedUser
+                key={user}
+                users={users}
+                user={user}
+                authedUser={authedUser}
+              />
             );
           })}
         </div>

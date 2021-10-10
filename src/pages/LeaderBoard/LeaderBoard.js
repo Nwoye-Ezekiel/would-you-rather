@@ -25,9 +25,9 @@ class LeaderBoard extends Component {
     const { users } = this.props;
 
     return (
-      <div class="module">
-        <div class="module-wrapper">
-          <h3 class="module-title">Leaderboard</h3>
+      <div className="module">
+        <div className="module-wrapper">
+          <h3 className="module-title">Leaderboard</h3>
           {this.sortUsers(users).map((user, index) => {
             return (
               <Podium

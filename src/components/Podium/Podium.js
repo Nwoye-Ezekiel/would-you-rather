@@ -23,13 +23,16 @@ class Podium extends Component {
             <div className="trophy-container">
               <img
                 src={require(`./assets/trophies/${position}.svg`).default}
-                alt=""
+                alt="avatar"
               />
             </div>
           </div>
           <div className="podium-body-container">
             <div className="podium-avatar-container">
-              <img src={require(`${users[id].avatarURL}`).default} alt="" />
+              <img
+                src={require(`${users[id].avatarURL}`).default}
+                alt="avatar"
+              />
             </div>
             <div className="podium-content-container">
               <div className="podium-content-header">

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AnswerQuestion from "../AnswerQuestion/AnswerQuestion";
 import PollResults from "../PollComponents/PollResults/PollResults";
+import { formatDate } from "../../Helpers/helpers";
 
 const QuestionComponent = ({
   questions,
@@ -16,13 +17,14 @@ const QuestionComponent = ({
       <div className="question-header-container">
         <h4>
           {users[questions[id].author].name} {pollResults ? "asked" : "asks:"}
+          <p className="date">{formatDate(questions[id].timestamp)}</p>
         </h4>
       </div>
       <div className="question-body-container">
         <div className="question-avatar-container">
           <img
             src={require(`${users[questions[id].author].avatarURL}`).default}
-            alt=""
+            alt="avatar"
           />
         </div>
         <div className="question-content-container">
@@ -30,7 +32,9 @@ const QuestionComponent = ({
             {!pollResults && <h3>Would you rather</h3>}
             {!answerQuestion && !pollResults && (
               <div>
-                <p className="question-content-text">{questions[id].optionOne.text} or ...</p>
+                <p className="question-content-text">
+                  {questions[id].optionOne.text} or ...
+                </p>
                 <Link to={`/questions/${id}`}>
                   <button className="view-poll-button">view poll</button>
                 </Link>
@@ -49,9 +53,9 @@ class DisplayQuestion extends Component {
   render() {
     const { questions, users, id, answerQuestion, pollResults } = this.props;
     return answerQuestion || pollResults ? (
-      <div class="module">
-        <div class="module-wrapper">
-          <h3 class="module-title">
+      <div className="module">
+        <div className="module-wrapper">
+          <h3 className="module-title">
             {answerQuestion && "Answer Question"}{" "}
             {pollResults && "Poll Results"}
           </h3>
