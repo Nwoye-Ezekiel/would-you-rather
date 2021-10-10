@@ -18,11 +18,8 @@ class Podium extends Component {
           <div className="podium-header-container">
             <h4>
               Rank: {position}{" "}
-              <sup>
-                {position === 1 ? "st" : position === 2 ? "nd" : "rd"}
-              </sup>
+              <sup>{position === 1 ? "st" : position === 2 ? "nd" : "rd"}</sup>
             </h4>
-
             <div className="trophy-container">
               <img
                 src={require(`./assets/trophies/${position}.svg`).default}
@@ -34,7 +31,6 @@ class Podium extends Component {
             <div className="podium-avatar-container">
               <img src={require(`${users[id].avatarURL}`).default} alt="" />
             </div>
-
             <div className="podium-content-container">
               <div className="podium-content-header">
                 <h3>{name}</h3>

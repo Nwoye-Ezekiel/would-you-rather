@@ -10,9 +10,7 @@ class AnswerQuestion extends Component {
   };
 
   // handle selected answer option
-  handleOption = (event) => {
-    this.setState({ answer: event.target.value });
-  };
+  handleOption = (event) => this.setState({ answer: event.target.value });
 
   // handle poll answer submission
   handleSubmit = (event) => {
@@ -29,50 +27,47 @@ class AnswerQuestion extends Component {
   render() {
     const { optionOneText, optionTwoText, answer } = this.state;
     return (
-      <div>
-        <form onChange={this.handleOption} onSubmit={this.handleSubmit}>
-          <div className="question-option-container">
-            <div className="radio-button-container">
-              <input
-                type="radio"
-                id="optionOne"
-                name="questionOption"
-                value="optionOne"
-              />
-            </div>
-            <label className="question-option-text" htmlFor="optionOne">
-              {optionOneText}
-            </label>
+      <form onChange={this.handleOption} onSubmit={this.handleSubmit}>
+        <div className="question-option-container">
+          <div className="radio-button-container">
+            <input
+              type="radio"
+              id="optionOne"
+              name="questionOption"
+              value="optionOne"
+            />
           </div>
-          <br />
-          <div className="question-option-container">
-            <div className="radio-button-container">
-              <input
-                type="radio"
-                id="optionTwo"
-                name="questionOption"
-                value="optionTwo"
-              />
-            </div>
-            <label className="question-option-text" htmlFor="optionTwo">
-              {optionTwoText}
-            </label>
+          <label className="question-option-text" htmlFor="optionOne">
+            {optionOneText}
+          </label>
+        </div>
+        <br />
+        <div className="question-option-container">
+          <div className="radio-button-container">
+            <input
+              type="radio"
+              id="optionTwo"
+              name="questionOption"
+              value="optionTwo"
+            />
           </div>
-          <br />
-          <button
-            className="submit-answer-button"
-            type="submit"
-            disabled={!answer}
-          >
-            submit
-          </button>
-        </form>
-      </div>
+          <label className="question-option-text" htmlFor="optionTwo">
+            {optionTwoText}
+          </label>
+        </div>
+        <br />
+        <button
+          className="submit-answer-button"
+          type="submit"
+          disabled={!answer}
+        >
+          submit
+        </button>
+      </form>
     );
   }
 }
 
-// retrieve questions and authedUser data from the redux state and id from the component props
 const mapStateToProps = ({ questions, authedUser }, { id }) => {
   return {
     id,

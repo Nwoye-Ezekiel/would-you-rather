@@ -47,25 +47,21 @@ class Add extends Component {
           <hr />
           <div>
             <h2 className="new-question-header">Would you rather...</h2>
-
             <input
               value={optionOneText}
               placeholder="Enter option one here"
               onChange={this.handleoptionOneText}
-              class="new-question-input"
+              className="new-question-input"
               maxLength="50"
             ></input>
-
-            <p class="or">Or</p>
-
+            <p className="or">Or</p>
             <input
               value={optionTwoText}
               placeholder="Enter option two here"
               onChange={this.handleoptionTwoText}
-              class="new-question-input"
+              className="new-question-input"
               maxLength="50"
             ></input>
-
             <button
               className="new-question-button"
               onClick={this.handleSubmit}

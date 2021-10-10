@@ -68,9 +68,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div class="home">
-        <div class="questions-wrapper">
-          <h3 class="questions-title">All Questions</h3>
+      <div class="module">
+        <div class="module-wrapper">
+          <h3 class="module-title">All Questions</h3>
           <div class="questions-header">
             <h4
               style={this.state.index === 0 ? this.tabStyle : {}}
@@ -86,8 +86,7 @@ class Home extends Component {
             </h4>
           </div>
 
-          <div class="questions-container">
-            {console.log("length: ", this.state.unansweredQuestions.length)}
+          <div>
             {this.state.index === 0 &&
               (this.state.unansweredQuestions.length === 0 ? (
                 <img className="no-data-image" src={NoData} alt="" />
@@ -112,7 +111,6 @@ class Home extends Component {
   }
 }
 
-// retrieve questions and authedUser data from the redux state
 const mapStateToProps = ({ questions, authedUser }) => {
   return {
     questions: questions,

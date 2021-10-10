@@ -25,21 +25,18 @@ const QuestionComponent = ({
             alt=""
           />
         </div>
-
         <div className="question-content-container">
           <div className="question-content-header">
             {!pollResults && <h3>Would you rather</h3>}
             {!answerQuestion && !pollResults && (
               <div>
-                <p>{questions[id].optionOne.text} or ...</p>
+                <p className="question-content-text">{questions[id].optionOne.text} or ...</p>
                 <Link to={`/questions/${id}`}>
                   <button className="view-poll-button">view poll</button>
                 </Link>
               </div>
             )}
-
             {answerQuestion && <AnswerQuestion id={id} />}
-
             {pollResults && <PollResults id={id} />}
           </div>
         </div>
@@ -52,9 +49,9 @@ class DisplayQuestion extends Component {
   render() {
     const { questions, users, id, answerQuestion, pollResults } = this.props;
     return answerQuestion || pollResults ? (
-      <div class="home">
-        <div class="questions-wrapper">
-          <h3 class="questions-title">
+      <div class="module">
+        <div class="module-wrapper">
+          <h3 class="module-title">
             {answerQuestion && "Answer Question"}{" "}
             {pollResults && "Poll Results"}
           </h3>
@@ -79,7 +76,6 @@ class DisplayQuestion extends Component {
   }
 }
 
-// retrieve questions and users data from the redux state and question from the component props
 const mapStateToProps = (
   { questions, users },
   { id, answerQuestion, pollResults }
@@ -88,6 +84,8 @@ const mapStateToProps = (
     questions,
     users,
     id,
+    answerQuestion,
+    pollResults,
   };
 };
 

@@ -25,9 +25,9 @@ class LeaderBoard extends Component {
     const { users } = this.props;
 
     return (
-      <div class="home">
-        <div class="questions-wrapper">
-          <h3 class="questions-title">Leaderboard</h3>
+      <div class="module">
+        <div class="module-wrapper">
+          <h3 class="module-title">Leaderboard</h3>
           {this.sortUsers(users).map((user, index) => {
             return (
               <Podium
@@ -47,7 +47,6 @@ class LeaderBoard extends Component {
   }
 }
 
-// retrieve users data from the redux state
 const mapStateToProps = ({ users }) => {
   return {
     users: users,

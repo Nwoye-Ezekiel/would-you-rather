@@ -53,7 +53,7 @@ class PollResult extends Component {
             return (
               <span
                 className={`${"voted-user-avatar"}  ${
-                  user === authedUser ? "voted-authedUser-avatar" : ""
+                  user === authedUser ? "voted-authed-user-avatar" : ""
                 }`}
               >
                 <img
@@ -61,7 +61,6 @@ class PollResult extends Component {
                   src={require(`${users[user].avatarURL}`).default}
                   alt=""
                 />
-                {/* {users[user].name} */}
               </span>
             );
           })}
@@ -71,7 +70,6 @@ class PollResult extends Component {
   }
 }
 
-// retrieve users and authedUser data from the redux state and question and option data from the component props
 const mapStateToProps = ({ users, authedUser }, { question, option }) => {
   return {
     users,

@@ -14,7 +14,6 @@ class PollResults extends Component {
   }
 }
 
-//retrieve questions and users data from the redux state and id from the component props
 const mapStateToProps = ({ questions, users }, { id }) => {
   return {
     questions,

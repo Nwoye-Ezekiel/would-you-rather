@@ -6,9 +6,10 @@ import { FaHome, FaPlus, FaBoxes, FaSignOutAlt, FaBars, FaTimes } from "react-ic
 
 export const AuthedUser = ({ users, authedUser }) => {
   console.log("Users", users, "authedUser", authedUser);
+
   return (
-    <div class="authed-user-details">
-      <span class="authed-username">
+    <div className="authed-user-details">
+      <span className="authed-username">
         <img
           className="authed-avatar"
           src={require(`${users[authedUser].avatarURL}`).default}
@@ -23,7 +24,7 @@ export const AuthedUser = ({ users, authedUser }) => {
 export const DesktopNav = ({ users, authedUser }) => {
   console.log("Users", users, "authedUser", authedUser);
   return (
-    <div class="links">
+    <div className="links">
       <NavList />
     </div>
   );
@@ -33,19 +34,19 @@ export const NavList = ({ users, authedUser, handleLogout, flexDirection, closeD
   return (
     <div className={`${"links"} ${flexDirection ? flexDirection : ""}`}>
       <Link onClick={closeDropdown} to="/home">
-        <span class="link">
+        <span className="link">
           <FaHome className="react-icon" />
           Home
         </span>
       </Link>
       <Link onClick={closeDropdown} to="/add">
-        <span class="link">
+        <span className="link">
           <FaPlus className="react-icon" />
           New Question
         </span>
       </Link>
       <Link onClick={closeDropdown} to="/leaderboard">
-        <span class="link">
+        <span className="link">
           <FaBoxes className="react-icon" />
           Leaderboard
         </span>
@@ -53,10 +54,10 @@ export const NavList = ({ users, authedUser, handleLogout, flexDirection, closeD
 
       {/* user's image and logout link not accessible when a user is not authenticated. (noticable on the login page) */}
       {authedUser && (
-        <div class="authed-user-section">
+        <div className="authed-user-section">
           <AuthedUser users={users} authedUser={authedUser} />
           <Link onClick={closeDropdown} to="/login">
-            <span class="link" onClick={handleLogout}>
+            <span className="link" onClick={handleLogout}>
               <FaSignOutAlt className="react-icon" />
               Logout
             </span>
@@ -84,7 +85,7 @@ class Nav extends Component {
     const { authedUser, users } = this.props;
     const { dropdown } = this.state;
     return (
-      <div class="links">
+      <div className="links">
         <div
           className={`${"mobile-dropdown-nav"} ${
             dropdown ? "slide-down" : "slide-up"
@@ -107,22 +108,20 @@ class Nav extends Component {
             closeDropdown={this.toggleDropdown}
           />
         </div>
-
         <div className="mobile-nav">
           {authedUser && <AuthedUser users={users} authedUser={authedUser} />}
           {!authedUser && (
-            <span class="link">
+            <span className="link">
               <h3>Would you rather</h3>
             </span>
           )}
-          <span class="link" onClick={this.toggleDropdown}>
+          <span className="link" onClick={this.toggleDropdown}>
             <FaBars
               style={{ fontSize: "25px", color: "white", margin: "0" }}
               className="react-icon"
             />
           </span>
         </div>
-
         <div className="desktop-nav">
           <NavList
             users={users}
@@ -135,7 +134,6 @@ class Nav extends Component {
   }
 }
 
-// retrieve authedUser and users data from the redux state
 const mapStateToProps = ({ authedUser, users }) => {
   return {
     authedUser,
