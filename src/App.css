@@ -421,12 +421,12 @@ a {
 
 .podium-content-container > p {
   font-size: 16px;
-  color: #fff;
+  color: #000000b3;
 }
 
 .podium-content-container > hr {
   margin: 5px 0;
-  border-top: 1px #cdf2f7 solid;
+  border-top: 1px #00000080 solid;
   opacity: 0.5;
 }
 
